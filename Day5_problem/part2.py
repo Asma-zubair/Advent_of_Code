@@ -1,7 +1,7 @@
 def solve():
     ranges = []
 
-    # Read input2.txt
+    
     with open("input2.txt", "r") as f:
         for line in f:
             line = line.strip()
@@ -13,9 +13,9 @@ def solve():
                         a, b = b, a
                     ranges.append((a, b))
                 except:
-                    pass  # ignore bad lines
+                    pass 
 
-    # Sort by start of range
+    
     ranges.sort()
 
     merged = []
@@ -25,13 +25,13 @@ def solve():
         else:
             last_start, last_end = merged[-1]
 
-            # If overlapping or touching (ex: 10-15 and 16-20)
+           
             if start <= last_end + 1:
                 merged[-1][1] = max(last_end, end)
             else:
                 merged.append([start, end])
 
-    # Count total IDs
+    
     total_fresh = sum((end - start + 1) for start, end in merged)
 
     print("Total fresh ingredient IDs:", total_fresh)
